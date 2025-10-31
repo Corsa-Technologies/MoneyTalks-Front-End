@@ -62,8 +62,12 @@
     <!--Graficos-------------------------------------------->
     <div class="chart-area">
 
-    <div class="chart-area2"><div id="pieContainer">
-     <div class="pieBackground"></div>
+    <div class="chart-area2">
+      <div id="pieContainer" class="chart-stack">
+     
+     <canvas id="graficoBarra" width="360" height="360"></canvas>
+     <canvas id="meuGrafico" width="360px" height="360px"></canvas>
+
     </div></div>
     <p id="fileNameDisplay">Nenhum arquivo selecionado</p>
     
@@ -75,11 +79,13 @@
     <!--Botoes de Baixo-------------------------------------> 
     <div class="bt2">
 
-    <!--Barras-->
-    <button class="button_2">Barras</button>
-
+    <!--Barra-->
+    <button class="button_2" id="btnBarra" onclick="mostrarGrafico()">Barra</button>
     <!--Pizza-->
-    <button class="button_2">Pizza</button>
+    <button class="button_2" id="btnPizza" onclick="mostrarGrafico()">Pizza</button>
+
+
+
 
 
     </div>
@@ -129,5 +135,6 @@
 
 <script src="theme-switcher.js"></script>
 <script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

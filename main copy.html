@@ -1,170 +1,44 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoneyTalks</title>
-  <link rel="shortcut icon" href="dinheiro.png" type="image/x-icon">
-  <link id="themeLink" rel="stylesheet" href="css/style.css">
-
+  <title>Gráfico de Pizza</title>
+  <!-- Importando o Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<nav class="sidebar">
-    <button class="button_3"><a href="main.html" target="_self" rel="Next"><img src="img/Logo Ab.png" width="60" height="60"alt="Menu" ></a></button>
-    <button class="button_3"><a href="config.html" target="_self" rel="Next"><img src="img/config.png" width="39" height="35"alt="Config" ></a>Config</button>
+  <!-- Área onde o gráfico será desenhado -->
+  <canvas id="meuGrafico" width="360px" height="360px"></canvas>
 
-
-
-    <!-- outros itens da sidebar -->
-</nav>
-
-<nav class="sidebar2">
-    <div class=sidebar3>
-    <h6>Nome</h6>
-    <h5 id="name"></h5>
-    <h6>Saldo</h6>
-    <h5 id="saldo"></h5>
-    </div>
-    <a href="index.html" target="_self" rel="Next"><img src="img/perfil.png" width="60" height="60"alt="perfil"></a>
-    
-
-</nav>
-
-
-<main class="content">
-
-
-    
-<div class="div3">
-
-
-    <!--Botoes de canto-------------------------------------> 
-    <div>
-        <div class="botoes">
-
-            <!--Enviar Extrato-->
-            <button >
-            <input type="file" id="doc" name="filename">
-            <img src="img/Enviar Extrato.png" width="144" height="112"alt="Enviar Extrato" ></a>Enviar Extrato
-            </button>
-        
-            <!--Histórico-->
-        <button onclick="toggleSecao()">
-        <img src="img/historico.png" width="128" height="112" alt="Enviar Extrato">
-        Histórico
-        </button>
-
-
-        </div>
-
-    <!--Graficos-------------------------------------------->
-    <div class="chart-area">
-    <div class="chart-area2"></div>
-    <p id="fileNameDisplay">Nenhum arquivo selecionado</p>
-    
-    </div>
-     
-    </div>
-    <!------------------------------------------------------>  
-
-    <!--Botoes de Baixo-------------------------------------> 
-    <div class="bt2">
-
-    <!--Barras-->
-    <button class="button_2">Barras</button>
-
-    <!--Pizza-->
-    <button class="button_2">Pizza</button>
-
-
-    </div>
-
-    <div>
-
-    </div>
-
-    <!------------------------------------------------------>  
-    <!--Histórico------------------------------------------->
-    
-    <div class="div4" id="minhaSecao">
-      <DIV><h1>Histórico</h1></DIV>
-
-
-
-    <!--Entrada de historico--------------------------------------------------------------------->
-    <div class="div9"data-id="123">
-    <div>
-    <div class="div10">
-      <button type="button" class="button_4 btn-excluir">
-        <img src="img/fechar.png" width="40" height="40" alt="">Excluir
-      </button>
-    </div>
-    <div class="div7">
-        <h1>TESTE</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur volutpat libero eu nibh suscipit posuere. Proin et velit interdum, molestie nisi ut, imperdiet purus. </p>
-        <div class="div11">
-        <H4>12/12/2022</H4>
-        <H4>Entretenimento</H4>
-        <H4>R$:8001,00</H4>
-        </div>
-    </div>  
-    </div>
-    </div>
-    <!-------------------------------------------------------------------------------------------->
-    <!--Entrada de historico--------------------------------------------------------------------->
-    <div class="div9"data-id="123">
-    <div>
-    <div class="div10">
-      <button type="button" class="button_4 btn-excluir">
-        <img src="img/fechar.png" width="40" height="40" alt="">Excluir
-      </button>
-    </div>
-    <div class="div7">
-        <h1>TESTE</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur volutpat libero eu nibh suscipit posuere. Proin et velit interdum, molestie nisi ut, imperdiet purus. </p>
-        <div class="div11">
-        <H4>12/12/2022</H4>
-        <H4>Entretenimento</H4>
-        <H4>R$:8001,00</H4>
-        </div>
-    </div>  
-    </div>
-    </div>
-    <!-------------------------------------------------------------------------------------------->
-    <!--Entrada de historico--------------------------------------------------------------------->
-    <div class="div9"data-id="123">
-    <div>
-    <div class="div10">
-      <button type="button" class="button_4 btn-excluir">
-        <img src="img/fechar.png" width="40" height="40" alt="">Excluir
-      </button>
-    </div>
-    <div class="div7">
-        <h1>TESTE</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur volutpat libero eu nibh suscipit posuere. Proin et velit interdum, molestie nisi ut, imperdiet purus. </p>
-        <div class="div11">
-        <H4>12/12/2022</H4>
-        <H4>Entretenimento</H4>
-        <H4>R$:8001,00</H4>
-        </div>
-    </div>  
-    </div>
-    </div>
-    <!-------------------------------------------------------------------------------------------->
-
-
-
-    </div>
-<!-------------------------------------------------------------------------------------------->  
-
-    
-</div>
-    
-
-
-<script src="theme-switcher.js"></script>
-<script src="main.js"></script>
+  <script>
+    const ctx = document.getElementById('meuGrafico').getContext('2d');
+    const meuGrafico = new Chart(ctx, {
+      type: 'pie', // tipo do gráfico
+      data: {
+        labels: ['Vermelho', 'Azul', 'Amarelo', 'Verde', 'Roxo'],
+        datasets: [{
+          label: 'R$',
+          data: [12.5, 19.1, 3, 5, 2], // valores de cada fatia
+          backgroundColor: [
+            'red',
+            'blue',
+            'yellow',
+            'green',
+            'purple'
+          ]
+        }]
+      },
+      options: {
+        responsive: false,
+        plugins: {
+          title: {
+            display: true,
+            
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>

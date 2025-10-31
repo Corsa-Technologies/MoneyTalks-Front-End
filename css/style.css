@@ -269,6 +269,11 @@ button:active {
   background-color: #30B27F;
   transform: scale(1.0);
 }
+.button_2.active {
+  background-color: #30B27F;
+  border: 1px solid #30B27F;
+  
+}
 
 /*Botao 3-------------------*/
 .button_3{
@@ -351,7 +356,7 @@ gap: 20px;
 .chart-area2 {
   width: 540px;
   height: 368px;
-  background-color: #ffffff;
+  
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -371,6 +376,34 @@ gap: 20px;
           margin: 5px 10px 0px 30px;
           border-radius: 300px;
      }
+
+.chart-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* canvases ocupam toda a área do container e ficam sobrepostos */
+.chart-stack canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* evita interação no canvas "invisível" */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 1;
+}
+
+/* canvas visível/ativo */
+.chart-stack canvas.active {
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 2;
+}
+
 
 /*---------------------------------------------------------*/
 /*Toggles-------------------------------------------------*/
@@ -410,6 +443,8 @@ gap: 20px;
 #minhaSecao {
   display: none;
 }
+
+
 
 
 /*---------------------------------------------------------*/
